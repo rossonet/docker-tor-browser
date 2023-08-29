@@ -16,27 +16,7 @@ jobs:
         run: |
           echo "VERSION_X64=$(awk -F '=' '/TOR_VERSION_X64/{print $NF; exit}' Dockerfile | tr -d '"')" >> $GITHUB_ENV
           echo "VERSION_ARM64=$(awk -F '=' '/TOR_VERSION_ARM64/{print $NF; exit}' Dockerfile | tr -d '"')" >> $GITHUB_ENV
-
-      - name: Create version tag for x64
-        uses: rickstaa/action-create-tag@v1
-        with:
-          force_push_tag: true
-          tag: "${{ env.VERSION_X64 }}"
-          message: "Tor Browser v${{ env.VERSION_X64 }}"
-
-      - name: Create version tag for arm64
-        uses: rickstaa/action-create-tag@v1
-        with:
-          force_push_tag: true
-          tag: "arm64-${{ env.VERSION_ARM64 }}"
-          message: "Tor Browser v${{ env.VERSION_ARM64 }} (arm64)"
-
-      - name: Tag as latest
-        uses: rickstaa/action-create-tag@v1
-        with:
-          force_push_tag: true
-          tag: "latest"
-          message: "Latest Tor Browser version"
+          cat $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
