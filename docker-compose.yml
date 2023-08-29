@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   tor:
-    image: domistyle/tor-browser
+    image: rossonet/tor-browser
     restart: always
     ports:
       - 5800:5800
@@ -11,6 +11,6 @@ services:
       DISPLAY_WIDTH: 1920
       DISPLAY_HEIGHT: 1080
       KEEP_APP_RUNNING: 1
-      TZ: Europe/Vienna
+      TZ: Europe/Rome
     volumes:
       - /srv/tor:/app/Browser/TorBrowser/Data/Tor
